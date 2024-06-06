@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('kecamatan', 20)->nullable();
             $table->string('kabupaten', 20)->nullable();
             $table->string('provinsi', 20)->nullable();
-            $table->string('nomor_hp', 13)->unique()->nullable();
+            $table->string('telepon', 20)->unique()->nullable();
 
             $table->string('nama_ayah', 100);
             $table->string('nama_ibu', 100);
@@ -42,6 +42,7 @@ return new class extends Migration
             $table->string('pekerjaan_wali', 100)->nullable();
             $table->string('pendidikan_wali', 100)->nullable();
             $table->longText('barcode');
+            $table->timestamps();
         });
     }
 

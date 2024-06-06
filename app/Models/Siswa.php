@@ -9,6 +9,7 @@ class Siswa extends Model
 {
     use HasFactory;
     protected $table = 'siswa';
+    protected $primaryKey = 'nis';
     protected $fillable = [
         'nis',
         'nisn',
@@ -20,11 +21,13 @@ class Siswa extends Model
         'status_dalam_keluarga',
         'anak_ke',
         'alamat',
+        'rt',
+        'rw',
         'kelurahan',
         'kecamatan',
         'kabupaten',
         'provinsi',
-        'nomor_hp',
+        'telepon',
         'nama_ayah',
         'nama_ibu',
         'pekerjaan_ayah',

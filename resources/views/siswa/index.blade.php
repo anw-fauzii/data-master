@@ -33,16 +33,32 @@
                         </thead>
                         <tbody>
                             @php
-                             $no = 0;
+                             $no = 1;
                             @endphp
-                            @forelse ($pegawai as $item)
+                            @forelse ($siswa as $item)
+                            <tr>
                                 <td>{{$no++}}</td>
                                 <td>{{$item->nis}}/{{$item->nisn}}</td>
                                 <td>{{$item->nama_lengkap}}</td>
                                 <td>{{$item->kelas}}</td>
-                                <td></td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{$item->nis}}">
+                                        barcode
+                                    </button>
+                                    <a type="button" class="btn btn-warning"  href="{{route('siswa.edit',$item->nis)}}">Edit</a>
+                                    <form action="{{ route('siswa.destroy', $item->nis) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Hapus</button>
+                                    </form>
+                                </td>
+                                @include('siswa.barcode')
+                            </tr>
+                                
                             @empty
+                            <tr>
                                 <td colspan="5" class="text-center">Belum ada data</td>
+                            </tr>
                             @endforelse
                         </tbody>
                     </table>

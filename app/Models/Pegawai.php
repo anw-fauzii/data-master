@@ -9,6 +9,8 @@ class Pegawai extends Model
 {
     use HasFactory;
     protected $table = "pegawai";
+    protected $primaryKey = 'nipy';
+    protected $keyType = 'string';
     protected $fillable = [
         'nipy',
         'nik',
@@ -26,7 +28,7 @@ class Pegawai extends Model
         'kecamatan',
         'kabupaten',
         'agama',
-        'jk',
+        'jenis_kelamin',
         'jabatan',
         'unit',
         'pendidikan',

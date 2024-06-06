@@ -34,7 +34,7 @@
                         </thead>
                         <tbody>
                             @php
-                             $no = 0;
+                             $no = 1;
                             @endphp
                             @forelse ($pegawai as $item)
                                 <td>{{$no++}}</td>
@@ -42,7 +42,18 @@
                                 <td>{{$item->nama_lengkap}}, {{$item->gelar}}</td>
                                 <td>{{$item->unit}}</td>
                                 <td>{{$item->jabatan}}</td>
-                                <td></td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{$item->nipy}}">
+                                        barcode
+                                    </button>
+                                    <a type="button" class="btn btn-warning"  href="{{route('pegawai.edit',$item->nipy)}}">Edit</a>
+                                    <form action="{{ route('pegawai.destroy', $item->nipy) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Hapus</button>
+                                    </form>
+                                </td>
+                                @include('pegawai.barcode')
                             @empty
                                 <td colspan="6" class="text-center">Belum ada data</td>
                             @endforelse
